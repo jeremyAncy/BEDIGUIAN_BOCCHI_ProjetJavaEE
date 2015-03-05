@@ -33,7 +33,7 @@ class ActiviteSpec extends Specification {
         given: "une activite initialise avec un titre vide"
         Activite activite = new Activite(titre: unTitre)
 
-        expect: "l'activite est valide"
+        expect: "l'activite est invalide"
         activite.validate() == false
 
         where:
