@@ -7,6 +7,8 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class ActiviteController {
 
+    ActiviteService activiteService
+
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -34,7 +36,8 @@ class ActiviteController {
             return
         }
 
-        activiteInstance.save flush: true
+        Utilisateur responsable = Utilisateur.load(activiteInstance.responsableId)
+        activiteService.insertOrUpdateActiviteForResponsable(activiteInstance,responsable)
 
         request.withFormat {
             form multipartForm {
@@ -61,7 +64,8 @@ class ActiviteController {
             return
         }
 
-        activiteInstance.save flush: true
+        Utilisateur responsable = Utilisateur.load(activiteInstance.responsableId)
+        activiteService.insertOrUpdateActiviteForResponsable(activiteInstance,responsable)
 
         request.withFormat {
             form multipartForm {

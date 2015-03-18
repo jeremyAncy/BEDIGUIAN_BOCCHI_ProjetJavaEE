@@ -19,7 +19,7 @@ class ActiviteService {
      */
     Activite insertOrUpdateActiviteForResponsable(Activite uneActivite, Utilisateur unResponsable) {
         uneActivite.responsable = unResponsable
-        uneActivite.save()
+        uneActivite.save(flush:true)
         uneActivite
     }
 }
