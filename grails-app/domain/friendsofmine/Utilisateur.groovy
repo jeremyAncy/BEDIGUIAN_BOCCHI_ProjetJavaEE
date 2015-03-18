@@ -8,6 +8,10 @@ class Utilisateur {
     Date dateNaissance
     String email
 
+    String toString() {
+        "$prenom $nom"
+    }
+
     static constraints = {
         nom blank: false
         prenom blank: false
