@@ -8,8 +8,6 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 class ActiviteService {
 
-    SessionFactory sessionFactory
-
     /**
      * Cree une nouvelle activite
      * @param unResponsable le responsable de l'activité
@@ -18,8 +16,17 @@ class ActiviteService {
      * @return l'activité créée
      */
     Activite insertOrUpdateActiviteForResponsable(Activite uneActivite, Utilisateur unResponsable) {
-        uneActivite.responsable = unResponsable
-        uneActivite.save(flush:true)
+        unResponsable.addToActivites(uneActivite)
+        unResponsable.save()
         uneActivite
+    }
+
+    /**
+     * Supprime une activité
+     * @param uneActivite l'activite à supprimer
+     */
+    void deleteActivite(Activite uneActivite) {
+        uneActivite.responsable.removeFromActivites(uneActivite)
+        uneActivite.delete()
     }
 }
