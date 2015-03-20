@@ -8,6 +8,12 @@ class Utilisateur {
     Date dateNaissance
     String email
 
+    static hasMany = [activites:Activite]
+
+    String toString() {
+        "$prenom $nom"
+    }
+
     static constraints = {
         nom blank: false
         prenom blank: false
