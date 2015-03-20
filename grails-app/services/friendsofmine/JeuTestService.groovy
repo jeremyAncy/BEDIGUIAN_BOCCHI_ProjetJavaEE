@@ -15,9 +15,10 @@ class JeuTestService {
                     sexe: "F",
                     email: "df@df.org"
             )
-            activiteService.insertOrUpdateActiviteForResponsable(new Activite(titre:"Act1"),unResponsable)
-            activiteService.insertOrUpdateActiviteForResponsable(new Activite(titre:"Act2"),unResponsable)
-            activiteService.insertOrUpdateActiviteForResponsable(new Activite(titre:"Act3"),unResponsable)
+            activiteService.insertOrUpdateActiviteForResponsable(new Activite(titre: "Act1"), unResponsable)
+            activiteService.insertOrUpdateActiviteForResponsable(new Activite(titre: "Act2"), unResponsable)
+            throw new RuntimeException("exception in creation activités")
+            activiteService.insertOrUpdateActiviteForResponsable(new Activite(titre: "Act3"), unResponsable)
         }
     }
 }
