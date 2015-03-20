@@ -7,6 +7,8 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class ActiviteController {
 
+    ActiviteService activiteService
+
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -22,7 +24,7 @@ class ActiviteController {
         respond new Activite(params)
     }
 
-    @Transactional
+
     def save(Activite activiteInstance) {
         if (activiteInstance == null) {
             notFound()
@@ -34,7 +36,8 @@ class ActiviteController {
             return
         }
 
-        activiteInstance.save flush: true
+        Utilisateur responsable = Utilisateur.get(activiteInstance.responsableId)
+        activiteService.insertOrUpdateActiviteForResponsable(activiteInstance,responsable)
 
         request.withFormat {
             form multipartForm {
@@ -49,7 +52,7 @@ class ActiviteController {
         respond activiteInstance
     }
 
-    @Transactional
+
     def update(Activite activiteInstance) {
         if (activiteInstance == null) {
             notFound()
@@ -61,7 +64,8 @@ class ActiviteController {
             return
         }
 
-        activiteInstance.save flush: true
+        Utilisateur responsable = Utilisateur.get(activiteInstance.responsableId)
+        activiteService.insertOrUpdateActiviteForResponsable(activiteInstance,responsable)
 
         request.withFormat {
             form multipartForm {
@@ -72,7 +76,7 @@ class ActiviteController {
         }
     }
 
-    @Transactional
+
     def delete(Activite activiteInstance) {
 
         if (activiteInstance == null) {
@@ -80,7 +84,7 @@ class ActiviteController {
             return
         }
 
-        activiteInstance.delete flush: true
+        activiteService.deleteActivite(activiteInstance)
 
         request.withFormat {
             form multipartForm {
