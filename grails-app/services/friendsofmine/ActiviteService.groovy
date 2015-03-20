@@ -2,8 +2,7 @@ package friendsofmine
 
 import org.hibernate.SessionFactory
 
-//import grails.transaction.Transactional
-import org.springframework.transaction.annotation.Transactional
+import grails.transaction.Transactional
 
 @Transactional
 class ActiviteService {
