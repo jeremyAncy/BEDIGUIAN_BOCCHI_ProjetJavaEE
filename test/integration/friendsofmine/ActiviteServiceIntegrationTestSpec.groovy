@@ -14,7 +14,6 @@ class ActiviteServiceIntegrationTestSpec extends Specification {
 
         given:"une activité"
         Activite uneActivite = new Activite(titre: "act1")
-        Integer version = uneActivite.version ?: -1
 
         and: "un responsable"
         Utilisateur unResponsable = new Utilisateur(nom: "Dupont", prenom: "Jeanne",sexe: "F",email: "j@j.com")
@@ -31,8 +30,8 @@ class ActiviteServiceIntegrationTestSpec extends Specification {
         and:"l'activité résultante a un id"
         resultActivite.id
 
-        and:"l'activité resultante a une version incrémentée de 1"
-        resultActivite.version == version + 1
+        and:"l'activité est bien presente en base"
+        Activite.findById(resultActivite.id) != null
 
         and: "l'activite a pour responsable le responsable passé en paramètre"
         resultActivite.responsable == unResponsable
