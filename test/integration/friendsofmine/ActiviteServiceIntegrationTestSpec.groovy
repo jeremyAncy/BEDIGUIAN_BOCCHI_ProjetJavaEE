@@ -37,6 +37,7 @@ class ActiviteServiceIntegrationTestSpec extends Specification {
         resultActivite.responsable == unResponsable
 
         and:"le responsable a dans sa liste d'activité l'activité passé en paramètre"
+        println ">>>>>>> classe pour activites : ${unResponsable.activites.class.name}"
         unResponsable.activites.contains(resultActivite)
     }
 
