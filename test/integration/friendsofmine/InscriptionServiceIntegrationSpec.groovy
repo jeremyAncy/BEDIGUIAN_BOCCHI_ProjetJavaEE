@@ -26,16 +26,17 @@ class InscriptionServiceIntegrationSpec extends Specification {
 
     void "test la création ou la mise à jour d'une inscription"() {
 
-        given: "une activité"
-        uneActivite
+        given: "une inscription"
+        Inscription uneInscription = new Inscription(activite: uneActivite, utilisateur: unUtilisateur)
 
-        and: "un utilisateur"
-        unUtilisateur
 
-        when: "on insert ou met à jour une inscription"
-        Inscription uneInscription = inscriptionService.insertOrUpdateInscriptionForActiviteAndUtilisateur(uneActivite, unUtilisateur)
+        when: "on insert ou met à jour l'inscription"
+        Inscription resInscription = inscriptionService.insertOrUpdateInscription(uneInscription)
 
-        then:"l'inscription a bien un id"
+        then: "l'inscription isérée est bien celle retournée"
+        resInscription == uneInscription
+
+        and:"l'inscription a bien un id"
         uneInscription.id != null
 
         and:"elle est valide"
@@ -53,7 +54,8 @@ class InscriptionServiceIntegrationSpec extends Specification {
     void "test de la suppression d'une inscription"() {
 
         given:"une inscription existante en base"
-        Inscription uneInscription = inscriptionService.insertOrUpdateInscriptionForActiviteAndUtilisateur(uneActivite, unUtilisateur)
+        Inscription uneInscription = new Inscription(activite: uneActivite, utilisateur: unUtilisateur)
+        inscriptionService.insertOrUpdateInscription(uneInscription)
 
         when:"on déclenche la suppression de l'inscription"
         inscriptionService.deleteInscription(uneInscription)
