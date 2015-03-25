@@ -7,6 +7,10 @@ class Activite {
 
     Utilisateur responsable
 
+    String toString() {
+        "$titre (${responsable.toString()})"
+    }
+
     static constraints = {
         titre blank: false
         descriptif nullable: true
