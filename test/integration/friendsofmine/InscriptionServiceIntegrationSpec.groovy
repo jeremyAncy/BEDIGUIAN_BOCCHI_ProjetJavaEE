@@ -70,57 +70,59 @@ class InscriptionServiceIntegrationSpec extends Specification {
 
     }
 
-    void "test du moteur de recherche sur les inscriptions (avec criteria)"() {
+    void "test du moteur de recherche sur les inscriptions"() {
 
         given:"les activités, les utilisateurs et les inscriptions fournis par le jeu de test "
         jeuTestService
 
         when:"on cherche les inscriptions dont le titre de l'activité contient 'ct' "
-        List<Inscription> res = inscriptionService.searchInscriptionsWithCriteria("ct",null,null)
+        List<Inscription> res = inscriptionService.searchInscriptions("ct1",null,null)
 
-        then:"on récupère toutes les inscriptions"
-        res.size() == 3
+        then:"on récupère uniquement les 2 inscriptions sur activité 1"
+        res.size() == 2
+        res*.id.contains(jeuTestService.jeanneOnAct1.id)
+        res*.id.contains(jeuTestService.jacquesOnAct1.id)
 
         when:"on cherche les inscriptions dont les activités sont gérées par le responsable dont le nom ou le prenom contient 'Val'"
-        res = inscriptionService.searchInscriptionsWithCriteria(null,'Val',null)
+        res = inscriptionService.searchInscriptions(null,'Val',null)
 
         then:"on récupère uniquement l'inscription jacquesOnAct3"
         res.size() == 1
-        res.contains(jeuTestService.jacquesOnAct3)
+        res*.id.contains(jeuTestService.jacquesOnAct3.id)
 
         when:"on cherche les inscriptions sur lesquelles une personne dont le nom ou me prénom contient 'Jack' "
-        res = inscriptionService.searchInscriptionsWithCriteria(null,null,'Jack')
+        res = inscriptionService.searchInscriptions(null,null,'Jacq')
 
         then:"on recupère les 2 inscriptions de Jacques"
         res.size() == 2
-        res.contains(jeuTestService.jacquesOnAct3)
-        res.contains(jeuTestService.jacquesOnAct1)
-    }
+        res*.id.contains(jeuTestService.jacquesOnAct3.id)
+        res*.id.contains(jeuTestService.jacquesOnAct1.id)
 
-    void "test du moteur de recherche sur les inscriptions (avec HQL)"() {
+        and:"elle sont ordonnées suivant le titre de l'activité"
+        res*.activite*.titre == [jeuTestService.activite1.titre, jeuTestService.activite3.titre]
 
-        given:"les activités, les utilisateurs et les inscriptions fournis par le jeu de test "
-        jeuTestService
+        when:"on cherche les inscriptions sur lesquelles une personne dont le nom ou me prénom contient 'Jack'et dont les activités sont gérées par le responsable dont le nom ou le prenom contient 'Isa'  "
+        res = inscriptionService.searchInscriptions(null,'Isa','Jacq')
 
-        when:"on cherche les inscriptions dont le titre de l'activité contient 'ct' "
-        List<Inscription> res = inscriptionService.searchInscriptionsWithHQL("ct",null,null)
+        then:"on récupère uniquement l'inscription jacquesOnAct1"
+        res.size() == 1
+        res*.id.contains(jeuTestService.jacquesOnAct1.id)
 
-        then:"on récupère toutes les inscriptions"
+        when:"on cherche les inscriptions dont le titre de l'activité contient 'Isa'"
+        res = inscriptionService.searchInscriptions("Isa",null,null)
+
+        then: "on ne récupère aucune inscription"
+        res.size() == 0
+
+        when:"on positionne tous les critères à null"
+        res = inscriptionService.searchInscriptions(null, null, null)
+
+        then: "on récupère toutes les inscriptions"
         res.size() == 3
 
-        when:"on cherche les inscriptions dont les activités sont gérées par le responsable dont le nom ou le prenom contient 'Val'"
-        res = inscriptionService.searchInscriptionsWithHQL(null,'Val',null)
-
-        then:"on récupère uniquement l'inscription jacquesOnAct3"
-        res.size() == 1
-        res.contains(jeuTestService.jacquesOnAct3)
-
-        when:"on cherche les inscriptions sur lesquelles une personne dont le nom ou me prénom contient 'Jack' "
-        res = inscriptionService.searchInscriptionsWithHQL(null,null,'Jack')
-
-        then:"on recupère les 2 inscriptions de Jacques"
-        res.size() == 2
-        res.contains(jeuTestService.jacquesOnAct3)
-        res.contains(jeuTestService.jacquesOnAct1)
+        and:"elle sont ordonnées suivant le titre de l'activité"
+        res*.activite*.titre == [jeuTestService.activite1.titre, jeuTestService.activite1.titre, jeuTestService.activite3.titre]
     }
+
+
 }

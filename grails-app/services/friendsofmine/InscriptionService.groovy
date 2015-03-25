@@ -23,4 +23,44 @@ class InscriptionService {
     void deleteInscription(Inscription uneInscription) {
         uneInscription.delete()
     }
+
+    /**
+     * Cherche les inscriptions correspondant aux critères
+     * @param inTitreAct chaîne de caractère présente dans le titre de l'activité
+     * @param inNomPrenonResp chaîne de caractère presente dans le nom/prenom du resp
+     * @param inNomPrenomUtilisateur chaîne de caractère presente dans le nom/prenom de l'inscrit
+     * @return
+     */
+    List<Inscription> searchInscriptions(String inTitreAct, String inNomPrenonResp, String inNomPrenomUtilisateur) {
+        def criteria = Inscription.createCriteria()
+        List<Inscription> res = criteria.list {
+            if (inTitreAct) {
+                activite {
+                    like 'titre', "%${inTitreAct}%"
+                }
+            }
+            if (inNomPrenonResp) {
+                activite {
+                    responsable {
+                        or {
+                            like 'nom', "%${inNomPrenonResp}%"
+                            like 'prenom', "%${inNomPrenonResp}%"
+                        }
+                    }
+                }
+            }
+            if (inNomPrenomUtilisateur) {
+                utilisateur {
+                    or {
+                        like 'nom', "%${inNomPrenomUtilisateur}%"
+                        like 'prenom', "%${inNomPrenomUtilisateur}%"
+                    }
+                }
+            }
+            activite {
+                order('titre')
+            }
+        }
+        res
+    }
 }
