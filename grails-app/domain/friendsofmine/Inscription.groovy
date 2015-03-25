@@ -8,4 +8,8 @@ class Inscription {
 
     static constraints = {
     }
+
+    static mapping = {
+        utilisateur fetch: 'join'
+    }
 }

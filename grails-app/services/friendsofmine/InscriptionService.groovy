@@ -60,6 +60,7 @@ class InscriptionService {
             activite {
                 order('titre')
             }
+            join 'activite.responsable'
         }
         res
     }
