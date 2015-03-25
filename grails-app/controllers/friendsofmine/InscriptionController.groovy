@@ -11,6 +11,11 @@ class InscriptionController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def doSearchInscriptions() {
+        def inscriptionList = inscriptionService.searchInscriptions(params.titre,params.responsable, params.utilisateur)
+        render(view: 'index', model: [inscriptionInstanceList: inscriptionList, inscriptionInstanceCount: inscriptionList.size()])
+    }
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Inscription.list(params), model: [inscriptionInstanceCount: Inscription.count()]

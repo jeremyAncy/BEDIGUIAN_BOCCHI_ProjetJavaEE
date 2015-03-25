@@ -20,6 +20,30 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
+            <g:form>
+                <fieldset class="form">
+                    <div class="fieldcontain">
+                        <label for="titre">
+                            Titre activité contient :
+                        </label>
+                        <g:textField name="titre"/>
+                        <label for="responsable">
+                            Le nom ou le prénom du responsable contient :
+                        </label>
+                        <g:textField name="responsable"/>
+                    </div>
+                    <div class="fieldcontain">
+                        <label for="utilisateur">
+                            Le nom ou le prénom de l'inscrit(e) contient :
+                        </label>
+                        <g:textField name="utilisateur"/>
+                    </div>
+                    <div style="float: right">
+                        <g:actionSubmit action="doSearchInscriptions" value="Rechercher" />
+                    </div>
+                </fieldset>
+
+            </g:form>
 			<table>
 			<thead>
 					<tr>
