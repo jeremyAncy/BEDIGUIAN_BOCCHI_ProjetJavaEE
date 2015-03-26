@@ -31,8 +31,8 @@ TP3
 Objectif : gestion des relations et utilisation de services
 
 - Gestion des relations to-one d'activité vers "propriétaire" de l'activité
-- Création du service ActiviteService pour la création/modication/suppression d'une activité
-- mofication du scaffold sur activité pour utilisation du service dans le contrôleur
+- Création du service ActiviteService pour la création/modification/suppression d'une activité
+- modification du scaffold sur activité pour utilisation du service dans le contrôleur
 - Gestion de la Classe Inscription gérant l'affectation des participants à une activité avec relations one-to-many d'inscription vers utilisateur et d'inscription vers activité
 - Complétion du service pour assurer la gestion des inscriptions
 - Création d'une situation permettant de vérifier qu'une méthode de services s'exécutent bien dans une transaction; comparer à ce qui se passe dans le Bootstrap.groovy
@@ -53,6 +53,6 @@ inscription, la vue affiche les informations du responsable de l'activité et la
 - Logging sql pour mise en exergue du problème du N+1 select.
 - Correction du N+1 select au niveau mapping et au niveau requête
 
-> ** Note **
+> **Note**
 
 > Pour la vue et le contrôleur à créer, l'objectif est que les étudiants s'inspirent du scaffold généré pour la classe Activité en utilisant le support de cours ou la doc officielle en complément.
