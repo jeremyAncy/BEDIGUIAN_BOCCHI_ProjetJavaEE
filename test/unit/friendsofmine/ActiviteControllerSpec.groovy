@@ -5,8 +5,19 @@ import grails.test.mixin.*
 import spock.lang.*
 
 @TestFor(ActiviteController)
-@Mock(Activite)
+@Mock([Activite])
 class ActiviteControllerSpec extends Specification {
+
+    Utilisateur responsable
+
+    def setup() {
+        responsable = new Utilisateur(id:1, email: 'e@e.com',nom: 'Dylan', prenom: 'bob',sexe: 'M')
+        controller.activiteService = new ActiviteService()
+        Utilisateur.metaClass.static.get = { id -> responsable }
+        Utilisateur.metaClass.addToActivites = { activite -> null }
+        Utilisateur.metaClass.removeFromActivites = { activite -> null }
+        Utilisateur.metaClass.save = { Map map -> responsable }
+    }
 
     def populateValidParams(params) {
         assert params != null
