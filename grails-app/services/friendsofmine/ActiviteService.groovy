@@ -19,7 +19,6 @@ class ActiviteService {
         // le flush: true n'est pas nécessaire pour que le test d'intégration passe mais est
         // nécessaire pour que l'appel venant du contrôleur fonctionne comme attendu
         unResponsable.save(flush: true)
-        uneActivite.save()
         uneActivite
     }
 
