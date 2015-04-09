@@ -4,13 +4,17 @@ class Musee {
 
     String nomMusee
     String telMusee
-    String adresseMusee
     String accesMetro
     String accesBus
     String horairesMusee
-    String gestionnaireMusee
+
 
 
     static constraints = {
+        nomMusee blank:false ,nullable:false
+        telMusee blank:false ,nullable:false
+        accesMetro blank:false ,nullable:false
+        accesBus blank:false ,nullable:false
+        horairesMusee blank:false ,nullable:false
     }
 }
