@@ -7,11 +7,10 @@ class Adresse {
     String codePostal
     String ville
 
-    //static hasMany = [activites:Activite]
 
-    /*String toString() {
-        "$prenom $nom"
-    }*/
+    String toString() {
+        "$numero, $rue, $codePostal, $ville"
+    }
 
     static constraints = {
         numero nullable: false, blank: false

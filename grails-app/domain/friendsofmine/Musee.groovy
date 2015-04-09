@@ -8,7 +8,11 @@ class Musee {
     String accesBus
     String horairesMusee
 
+    Adresse adresseMusee
 
+    String toString() {
+        "Nom : $nomMusee et adresse : (${adresseMusee.toString()})"
+    }
 
     static constraints = {
         nomMusee blank:false ,nullable:false
