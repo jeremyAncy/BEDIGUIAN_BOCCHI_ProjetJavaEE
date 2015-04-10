@@ -11,7 +11,7 @@ class MuseeService {
      * @param unGestionnaire
      * @return un Musee
      */
-    Musee insertOrUpdateActiviteForResponsable(Musee unMusee, Gestionnaire unGestionnaire) {
+    Musee insertOrUpdateMuseeForGestionnaire(Musee unMusee, Gestionnaire unGestionnaire) {
         unGestionnaire.save()
         unGestionnaire.addToMusees(unMusee)
         unMusee.save()
@@ -19,11 +19,11 @@ class MuseeService {
     }
 
     /**
-     * Supprime une activité
+     * Supprime une musée
      * @param uneActivite l'activite à supprimer
      */
     void deleteMusee(Musee unMusee) {
-        unMusee.gestionnaire.removeFromMusees()
+        unMusee.gestionnaire.removeFromMusees(unMusee)
         unMusee.delete()
     }
 
