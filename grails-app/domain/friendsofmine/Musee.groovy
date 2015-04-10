@@ -8,10 +8,12 @@ class Musee {
     String accesBus
     String horairesMusee
 
+    Gestionnaire gestionnaire
+
     Adresse adresseMusee
 
     String toString() {
-        "Nom : $nomMusee et adresse : (${adresseMusee.toString()})"
+        "Nom : $nomMusee "
     }
 
     static constraints = {
@@ -20,5 +22,6 @@ class Musee {
         accesMetro blank:false ,nullable:false
         accesBus blank:false ,nullable:false
         horairesMusee blank:false ,nullable:false
+        gestionnaire nullable: false
     }
 }
