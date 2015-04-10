@@ -11,42 +11,43 @@ import spock.lang.Unroll
 class MuseeSpec extends Specification {
 
     @Unroll
-    void "test la validite d'un musée valide"( String unNomMusee,String untelMusee,String unaccesMetro,String unaccesBus,String unhorairesMusee, Adresse uneAdresse){
+    void "test la validite d'un musée valide"( String unNomMusee,String untelMusee,String unaccesMetro,String unaccesBus,String unhorairesMusee,Gestionnaire unGestionnaire,Adresse uneAdresse){
 
-        given: "un musée initialise avec un nom,un telephone,une adresse,un accesMetro,un accesBus, un horaire et un gestionnaire"
-        Musee musee = new Musee(nomMusee: unNomMusee, telMusee: untelMusee, accesMetro:unaccesMetro, accesBus:unaccesBus, horairesMusee:unhorairesMusee, adresseMusee: uneAdresse)
+        given: "un musée initialise avec un nom,un telephone,une adresse,un accesMetro,un accesBus, un horaire"
+        Musee musee = new Musee(nomMusee: unNomMusee, telMusee: untelMusee, accesMetro:unaccesMetro, accesBus:unaccesBus, horairesMusee:unhorairesMusee ,gestionnaire: unGestionnaire ,adresseMusee: uneAdresse)
 
         expect: "le musée est valide"
         musee.validate() == true
 
         where:
-        unNomMusee    | untelMusee | unaccesMetro | unaccesBus | unhorairesMusee | uneAdresse
-        "Musee" | "0505050505" | "unaccesMetro" | "unaccesBus" | "10:00"         | Mock(Adresse)
+        unNomMusee    | untelMusee | unaccesMetro | unaccesBus | unhorairesMusee | unGestionnaire | uneAdresse
+        "Musee" | "05.05.05.05.05" | "unaccesMetro" | "unaccesBus" | "10:00,19:00" | Mock(Gestionnaire) | Mock(Adresse)
 
     }
 
     @Unroll
-    void "test l'invalidite d'un musée non valide"(String unNomMusee,String untelMusee,String unaccesMetro,String unaccesBus,String unhorairesMusee, Adresse uneAdresse) {
+    void "test l'invalidite d'un musée non valide"(String unNomMusee,String untelMusee,String unaccesMetro,String unaccesBus,String unhorairesMusee,Gestionnaire unGestionnaire,Adresse uneAdresse) {
 
         given: "un musée initialise de maniere non valide"
-        Musee musee = new Musee(nom: unNomMusee, telMusee: untelMusee, accesMetro:unaccesMetro, accesBus:unaccesBus, horairesMusee:unhorairesMusee, adresseMusee: uneAdresse)
+        Musee musee = new Musee(nom: unNomMusee, telMusee: untelMusee, accesMetro:unaccesMetro, accesBus:unaccesBus, horairesMusee:unhorairesMusee, gestionnaire: unGestionnaire , adresseMusee: uneAdresse)
 
         expect: "le musée est invalide"
         musee.validate() == false
 
         where:
-        unNomMusee   | untelMusee    | unaccesMetro   | unaccesBus   |  unhorairesMusee       | uneAdresse
-        null         | "untelMusee"  | "unaccesMetro" | "unaccesBus" | "unhorairesMusee"      | Mock(Adresse)
-        ""           | "untelMusee"  | "unaccesMetro" | "unaccesBus" | "unhorairesMusee"      | Mock(Adresse)
-        "unNomMusee" | null          | "unaccesMetro" | "unaccesBus" | "unhorairesMusee"      | Mock(Adresse)
-        "unNomMusee" | ""            | "unaccesMetro" | "unaccesBus" | "unhorairesMusee"      | Mock(Adresse)
-        "unNomMusee" | "untelMusee"  | ""             | "unaccesBus" | "unhorairesMusee"      | Mock(Adresse)
-        "unNomMusee" | "untelMusee"  | null           | "unaccesBus" | "unhorairesMusee"      | Mock(Adresse)
-        "unNomMusee" | "untelMusee"  | "unaccesMetro" | ""           | "unhorairesMusee"      | Mock(Adresse)
-        "unNomMusee" | "untelMusee"  | "unaccesMetro" | null         | "unhorairesMusee"      | Mock(Adresse)
-        "unNomMusee" | "untelMusee"  | "unaccesMetro" | "unaccesBus" |  null                  | Mock(Adresse)
-        "unNomMusee" | "untelMusee"  | "unaccesMetro" | "unaccesBus" |  ""                    | Mock(Adresse)
-        "unNomMusee" | "untelMusee"  | "unaccesMetro" | "unaccesBus" | "unhorairesMusee"      | null
+        unNomMusee    | untelMusee | unaccesMetro | unaccesBus | unhorairesMusee | unGestionnaire | uneAdresse
+        null     | "05.05.05.05.05"  | "unaccesMetro" | "unaccesBus" | "10:00,19:00" | Mock(Gestionnaire) | Mock(Adresse)
+        ""       | "05.05.05.05.05"  | "unaccesMetro" | "unaccesBus" | "10:00,19:00" | Mock(Gestionnaire) | Mock(Adresse)
+        "unNomMusee" | null      | "unaccesMetro" | "unaccesBus" | "10:00,19:00" | Mock(Gestionnaire) | Mock(Adresse)
+        "unNomMusee" | ""        | "unaccesMetro" | "unaccesBus" | "10:00,19:00" | Mock(Gestionnaire) | Mock(Adresse)
+        "unNomMusee" | "05.05.05.05.05" | ""  | "unaccesBus" | "10:00,19:00" | Mock(Gestionnaire) | Mock(Adresse)
+        "unNomMusee" | "05.05.05.05.05" | null        | "unaccesBus" | "10:00,19:00" | Mock(Gestionnaire) | Mock(Adresse)
+        "unNomMusee" | "05.05.05.05.05" | "unaccesMetro" | "" | "10:00,19:00" | Mock(Gestionnaire) | Mock(Adresse)
+        "unNomMusee" | "05.05.05.05.05" | "unaccesMetro" | null | "10:00,19:00" | Mock(Gestionnaire) | Mock(Adresse)
+        "unNomMusee"| "05.05.05.05.05"  | "unaccesMetro" | "unaccesBus" | null | Mock(Gestionnaire) | Mock(Adresse)
+        "unNomMusee"| "05.05.05.05.05"  | "unaccesMetro" | "unaccesBus" | "" | Mock(Gestionnaire) | Mock(Adresse)
+        "unNomMusee"| "05.05.05.05.05"  | "unaccesMetro" | "unaccesBus" | "10:00,19:00" | null | Mock(Adresse)
+        "unNomMusee"| "05.05.05.05.05"  | "unaccesMetro" | "unaccesBus" | "10:00,19:00" | Mock(Gestionnaire) | null
 
 
 
