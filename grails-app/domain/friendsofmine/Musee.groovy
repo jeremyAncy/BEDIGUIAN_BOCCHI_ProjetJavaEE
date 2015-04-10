@@ -20,5 +20,6 @@ class Musee {
         accesMetro blank:false ,nullable:false
         accesBus blank:false ,nullable:false
         horairesMusee blank:false ,nullable:false
+        adresseMusee  nullable: false
     }
 }
