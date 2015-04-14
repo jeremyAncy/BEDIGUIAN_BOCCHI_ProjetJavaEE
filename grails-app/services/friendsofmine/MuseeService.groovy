@@ -27,4 +27,34 @@ class MuseeService {
         unMusee.delete()
     }
 
+    /**
+     * Cherche les inscriptions correspondant aux critères
+     * @param inTitreAct chaîne de caractère présente dans le titre de l'activité
+     * @param inNomPrenonResp chaîne de caractère presente dans le nom/prenom du resp
+     * @param inNomPrenomUtilisateur chaîne de caractère presente dans le nom/prenom de l'inscrit
+     * @return
+     */
+    List<Musee> searchMusees(String nomM, String codeP, String nomAd) {
+        def criteria = Musee.createCriteria()
+        List<Musee> res = criteria.list {
+            if (nomM) {
+                like 'nomMusee', "%${nomM}%"
+
+            }
+            if (nomAd) {
+                adresse {
+                    or {
+                        like 'rue', "%${codeP}%"
+                    }
+                }
+            }
+            if (codeP) {
+                adresse {
+                        like 'codePostal', "%${nomAd}%"
+                }
+            }
+            res
+        }
+    }
+
 }
