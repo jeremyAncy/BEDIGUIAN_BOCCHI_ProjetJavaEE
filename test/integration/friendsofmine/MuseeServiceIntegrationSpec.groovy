@@ -66,13 +66,13 @@ class MuseeServiceIntegrationSpec extends Specification {
         given:"les adresses, les gestionnaires et les musées fournis par le jeu de test "
         jeuTestMuseeService
 
-        when:"on cherche les musées qui contient 'sée' dans son nom "
-        List<Musee> res = museeService.searchMusees("sée",null,null)
+        when:"on cherche les musées qui contient 'de' dans son nom "
+        List<Musee> res = museeService.searchMusees("de",null,null)
 
-        then:"on récupère uniquement les musée 1 et 3"
+        then:"on récupère uniquement les musée 1 et 2"
         res.size() == 2
-        res*.id.contains(jeuTestMuseeService.musee1)
-        res*.id.contains(jeuTestMuseeService.musee3)
+        res*.id.contains(jeuTestMuseeService.musee1.id)
+        res*.id.contains(jeuTestMuseeService.musee2.id)
 
         when:"on cherche les inscriptions dont le code postal contient 31"
         res = museeService.searchMusees(null,'314',null)

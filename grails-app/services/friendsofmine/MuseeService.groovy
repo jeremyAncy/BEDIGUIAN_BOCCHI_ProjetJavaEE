@@ -43,18 +43,19 @@ class MuseeService {
             }
             if (nomAd) {
                 adresse {
-                    or {
-                        like 'rue', "%${codeP}%"
-                    }
+                    like 'rue', "%${codeP}%"
                 }
             }
             if (codeP) {
                 adresse {
-                        like 'codePostal', "%${nomAd}%"
+                    like 'codePostal', "%${nomAd}%"
                 }
             }
-            res
+            order('nomMusee')
+
         }
+        res
+
     }
 
 }

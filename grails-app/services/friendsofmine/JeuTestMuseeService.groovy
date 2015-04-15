@@ -13,11 +13,11 @@ class JeuTestMuseeService {
 
     Gestionnaire gestionnaire1
     Gestionnaire gestionnaire2
-    Gestionnaire gestionnaire3
 
     Adresse adresse1
     Adresse adresse2
     Adresse adresse3
+
 
     def createJeuTestFoMusee() {
         if (Musee.count() == 0) {
@@ -28,10 +28,9 @@ class JeuTestMuseeService {
             gestionnaire2 = new Gestionnaire(nom: "roger").save()
             musee1 = museeService.insertOrUpdateMuseeForGestionnaire(new Musee(nomMusee: "Musée des Augustins", telMusee: "05050505", accesMetro: "Jean Jaures", accesBus: "Jean Jaures", horairesMusee: "10:00,19:00", adresseMusee: adresse1), gestionnaire1)
             musee2 = museeService.insertOrUpdateMuseeForGestionnaire(new Musee(nomMusee: "Muséum de Toulouse", telMusee: "05050505", accesMetro: "Jean Jaures", accesBus: "Jean Jaures", horairesMusee: "10:00,17:00", adresseMusee: adresse2), gestionnaire2)
-            musee3 = museeService.insertOrUpdateMuseeForGestionnaire(new Musee(nomMusee: "Musee Paul Dupuy", telMusee: "05050505", accesMetro: "Jean Jaures", accesBus: "Jean Jaures", horairesMusee: "10:00,17:00", adresseMusee: adresse3), gestionnaire2)
+            musee3 = museeService.insertOrUpdateMuseeForGestionnaire(new Musee(nomMusee: "Musée Paul Dupuy", telMusee: "05050505", accesMetro: "Jean Jaures", accesBus: "Jean Jaures", horairesMusee: "10:00,17:00", adresseMusee: adresse3), gestionnaire2)
 
         }
 
     }
-
 }
