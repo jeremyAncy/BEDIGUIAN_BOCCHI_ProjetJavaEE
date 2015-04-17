@@ -13,7 +13,7 @@ class Musee {
     Adresse adresseMusee
 
     String toString() {
-        "Nom : $nomMusee  et adresse : ${adresseMusee.toString()}"
+        "$nomMusee"
     }
 
     static constraints = {

@@ -24,6 +24,7 @@ class MuseeController {
         respond museeInstance
     }
 
+
     def create() {
         respond new Musee(params)
     }

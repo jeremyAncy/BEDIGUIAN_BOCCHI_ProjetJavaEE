@@ -41,18 +41,16 @@ class MuseeService {
                 like 'nomMusee', "%${nomM}%"
 
             }
-            if (nomAd) {
-                adresse {
-                    like 'rue', "%${codeP}%"
-                }
-            }
             if (codeP) {
-                adresse {
-                    like 'codePostal', "%${nomAd}%"
+                adresseMusee {
+                    like 'codePostal', "%${codeP}%"
                 }
             }
-            order('nomMusee')
-
+            if (nomAd) {
+                adresseMusee {
+                    like 'rue', "%${nomAd}%"
+                }
+            }
         }
         res
 

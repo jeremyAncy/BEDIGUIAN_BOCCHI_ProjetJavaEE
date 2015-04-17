@@ -84,12 +84,12 @@ class MuseeServiceIntegrationSpec extends Specification {
         when:"on cherche les musées dans lesquels le nom de la rue contient 'etz' "
         res = museeService.searchMusees(null,null,'etz')
 
-        then:"on recupère le musée 2"
+        then:"on recupère le musée 1"
         res.size() == 1
-        res*.id.contains(jeuTestMuseeService.musee2.id)
+        res*.id.contains(jeuTestMuseeService.musee1.id)
 
         and:"elle sont ordonnées suivant le  nom des musées"
-        res*.nomMusee == [jeuTestMuseeService.musee2.nomMusee]
+        res*.nomMusee == [jeuTestMuseeService.musee1.nomMusee]
 
         when:"on cherche les musées dont le code postal contient 310 et donc le nom de la rue contient etz  "
         res = museeService.searchMusees(null,'310','etz')
@@ -101,7 +101,7 @@ class MuseeServiceIntegrationSpec extends Specification {
         when:"on cherche les musées dont le nom du musée contient 'xor'"
         res = museeService.searchMusees("xor",null,null)
 
-        then: "on ne récupère aucune inscription"
+        then: "on ne récupère aucun musée"
         res.size() == 0
 
         when:"on positionne tous les critères à null"
@@ -110,7 +110,7 @@ class MuseeServiceIntegrationSpec extends Specification {
         then: "on récupère tout les musées"
         res.size() == 3
 
-        and:"ils sont ordonnés suivant le nom"
+        and:"ils sont ordonnés dans l ordre d initialisation des musées"
         res*.nomMusee == [jeuTestMuseeService.musee1.nomMusee, jeuTestMuseeService.musee2.nomMusee, jeuTestMuseeService.musee3.nomMusee]
     }
 
