@@ -7,16 +7,6 @@
 		<g:set var="entityName" value="${message(code: 'musee.label', default: 'Musee')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 
-        <script type="text/javascript">
-            $( document ).ready(function() {
-                $("tbody").hide();
-                $("form").submit(function( event ) {
-                    $("tbody").show();
-                    event.preventDefault();
-                });
-            });
-        </script>
-
 	</head>
 	<body>
 		<a href="#list-musee" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -36,10 +26,10 @@
             <g:form>
                 <fieldset class="form">
                     <div class="fieldcontain">
-                        <label for="nomMusée">
+                        <label for="nomMusee">
                             Nom du musée contient :
                         </label>
-                        <g:textField name="nomMusée"/>
+                        <g:textField name="nomMusee"/>
                         <label for="codePostal">
                             Le code postal du musée contient :
                         </label>
@@ -62,12 +52,9 @@
             <table>
                 <thead>
                 <tr>
-
                     <g:sortableColumn property="nomMusee" title="${message(code: 'musee.nomMusee.label', default: 'Nom Musée')}" />
                     <g:sortableColumn property="rue" title="${message(code: 'musee.adresseMusee.rue.label', default: 'Rue')}" />
                     <g:sortableColumn property="codePostal" title="${message(code: 'musee.adresseMusee.codePostal.label', default: 'Code postal')}" />
-
-
 
                 </tr>
                 </thead>
@@ -79,17 +66,13 @@
                     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
                         <td><g:link action="show" id="${museeInstance.id}">${fieldValue(bean: museeInstance, field: "nomMusee")}</g:link></td>
-
-
                         <td>${fieldValue(bean: museeInstance, field: "adresseMusee.rue")}</td>
                         <td>${fieldValue(bean: museeInstance, field: "adresseMusee.codePostal")}</td>
-
 
                     </tr>
                 </g:each>
                 </tbody>
             </table>
-
 
 			<div class="pagination">
 				<g:paginate max="5" total="${museeInstanceCount ?: 5}" />
