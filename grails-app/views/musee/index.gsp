@@ -53,8 +53,14 @@
                 <thead>
                 <tr>
                     <g:sortableColumn property="nomMusee" title="${message(code: 'musee.nomMusee.label', default: 'Nom Musée')}" />
-                    <g:sortableColumn property="rue" title="${message(code: 'musee.adresseMusee.rue.label', default: 'Rue')}" />
-                    <g:sortableColumn property="codePostal" title="${message(code: 'musee.adresseMusee.codePostal.label', default: 'Code postal')}" />
+                    <g:sortableColumn property="adresse" title="${message(code: 'musee.adresseMusee.label', default: 'Adresse')}" />
+                    <g:sortableColumn property="codePostal" title="${message(code: 'musee.adressMusee.codePostal.label', default: 'Code Postal')}" />
+                    <g:sortableColumn property="telMusee" title="${message(code: 'musee.telMusee.label', default: 'Téléphone')}" />
+                    <g:sortableColumn property="accesBus" title="${message(code: 'musee.accesBus.label', default: 'Acces Bus')}" />
+                    <g:sortableColumn property="accesMetro" title="${message(code: 'musee.accesMetro.label', default: 'Acces Métro')}" />
+                    <g:sortableColumn property="horairesMusee" title="${message(code: 'musee.horairesMusee.label', default: 'Horaire')}" />
+
+
 
                 </tr>
                 </thead>
@@ -66,8 +72,13 @@
                     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
                         <td><g:link action="show" id="${museeInstance.id}">${fieldValue(bean: museeInstance, field: "nomMusee")}</g:link></td>
-                        <td>${fieldValue(bean: museeInstance, field: "adresseMusee.rue")}</td>
+                        <td>${fieldValue(bean: museeInstance, field: "adresseMusee")}</td>
                         <td>${fieldValue(bean: museeInstance, field: "adresseMusee.codePostal")}</td>
+                        <td>${fieldValue(bean: museeInstance, field: "telMusee")}</td>
+                        <td>${fieldValue(bean: museeInstance, field: "accesBus")}</td>
+                        <td>${fieldValue(bean: museeInstance, field: "accesMetro")}</td>
+                        <td>${fieldValue(bean: museeInstance, field: "horairesMusee")}</td>
+
 
                     </tr>
                 </g:each>
