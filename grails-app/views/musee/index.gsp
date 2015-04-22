@@ -66,10 +66,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <g:each in="${museeInstanceList}" status="i" var="museeInstance">
+                    <g:each in="${museeFavorisList}" status="i" var="museeFavoris">
 
                         <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                            <td><g:link action="show" id="${museeInstance.id}">${fieldValue(bean: museeInstance, field: "nomMusee")}</g:link></td>
+                            <td><g:link action="show" id="${museeFavoris.id}">${fieldValue(bean: museeFavoris, field: "nomMusee")}</g:link></td>
                         </tr>
                     </g:each>
                     </tbody>
@@ -87,7 +87,7 @@
                     <g:sortableColumn property="accesMetro" title="${message(code: 'musee.accesMetro.label', default: 'Acces Métro')}" />
                     <g:sortableColumn property="horairesMusee" title="${message(code: 'musee.horairesMusee.label', default: 'Horaire')}" />
                     <g:sortableColumn property="gestionnaire" title="${message(code: 'musee.gestionnaire.nom.label', default: 'Gestionnaire')}" />
-
+                    <th></th>
 
 
 
@@ -108,6 +108,7 @@
                         <td>${fieldValue(bean: museeInstance, field: "accesMetro")}</td>
                         <td>${fieldValue(bean: museeInstance, field: "horairesMusee")}</td>
                         <td>${fieldValue(bean: museeInstance, field: "gestionnaire")}</td>
+                        <td><g:actionSubmit id="addMuseeFavory${museeInstance.id}" action="addMuseeFavory" value="Ajouter à ma liste de musées"/></td>
 
 
                     </tr>

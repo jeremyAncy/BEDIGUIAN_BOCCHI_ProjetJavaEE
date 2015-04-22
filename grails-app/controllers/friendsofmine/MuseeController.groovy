@@ -29,8 +29,9 @@ class MuseeController {
     }
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        //respond Musee.list(params), model: [museeInstanceCount: Musee.count()]
+        params.max = Math.min(max ?: 5, 100)
+        def favList = museeService.museeFav
+        respond Musee.list(params), model: [museeInstanceCount: Musee.count()]
     }
 
     def show(Musee museeInstance) {
