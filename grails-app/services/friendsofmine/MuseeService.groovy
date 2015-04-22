@@ -5,6 +5,8 @@ import grails.transaction.Transactional
 @Transactional
 class MuseeService {
 
+    List<Musee> museeFav = new ArrayList<Musee>()
+
     /**
      *
      * @param unMusee
@@ -54,6 +56,22 @@ class MuseeService {
         }
         res
 
+    }
+
+    def List<Musee> removeMuseeToFav(Musee musee) {
+        def fav = museeFav.iterator()
+
+        while(fav.hasNext()) {
+            if(musee.id == fav.next().id)
+                fav.remove()
+        }
+
+        museeFav.sort {it.nomMusee}
+    }
+
+    def List<Musee> addMuseeToFav(Musee musee) {
+        museeFav.add(musee)
+        museeFav.sort {it.nomMusee}
     }
 
 }
