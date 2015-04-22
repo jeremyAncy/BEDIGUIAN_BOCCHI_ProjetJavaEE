@@ -6,7 +6,17 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'musee.label', default: 'Musee')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
-
+        <style>
+            body {
+                max-width: none;
+                width: 70%;
+                margin-left: 15%;
+            }
+            #museeFav {
+                width: 20%;
+                margin-left: 80%;
+            }
+        </style>
 	</head>
 	<body>
 		<a href="#list-musee" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -48,6 +58,23 @@
 
             </g:form>
 
+            <div id="museeFav">
+                <table>
+                    <thead>
+                    <tr>
+                        <g:sortableColumn property="nomMusee" title="${message(code: 'musee.nomMusee.label', default: 'Musées favoris')}" />
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <g:each in="${museeInstanceList}" status="i" var="museeInstance">
+
+                        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                            <td><g:link action="show" id="${museeInstance.id}">${fieldValue(bean: museeInstance, field: "nomMusee")}</g:link></td>
+                        </tr>
+                    </g:each>
+                    </tbody>
+                </table>
+            </div>
 
             <table>
                 <thead>
