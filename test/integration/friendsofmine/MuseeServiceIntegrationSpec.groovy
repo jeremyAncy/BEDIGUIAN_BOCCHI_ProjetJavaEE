@@ -108,10 +108,10 @@ class MuseeServiceIntegrationSpec extends Specification {
         res = museeService.searchMusees(null, null, null)
 
         then: "on récupère tout les musées"
-        res.size() == 3
+        res.size() == 7
 
         and:"ils sont ordonnés dans l ordre d initialisation des musées"
-        res*.nomMusee == [jeuTestMuseeService.musee1.nomMusee, jeuTestMuseeService.musee2.nomMusee, jeuTestMuseeService.musee3.nomMusee]
+        res*.nomMusee == [jeuTestMuseeService.musee1.nomMusee, jeuTestMuseeService.musee2.nomMusee, jeuTestMuseeService.musee3.nomMusee,jeuTestMuseeService.musee4.nomMusee,jeuTestMuseeService.musee5.nomMusee,jeuTestMuseeService.musee6.nomMusee,jeuTestMuseeService.musee7.nomMusee]
     }
 
     void "test de l'ajout en favoris d'un musée"() {
@@ -119,7 +119,7 @@ class MuseeServiceIntegrationSpec extends Specification {
         Adresse adresseMusee = new Adresse(numero: 20, rue: "lis Pompidou", codePostal: "81000", ville: "Albi")
         adresseMusee.save()
         Musee unMusee = new Musee(nom: "UnMuséeFav", horairesOuverture: "10:00, 19:00", telephone: "05.63.45.63.36", accesMetro: "Jean Jaurès", accesBus: "Capitole", adresse: adresseMusee)
-        List<Musee> ListFav = museeService.museeFav
+        List<Musee> listFav = museeService.museeFav
 
         when:"on ajoute le musée a cette liste"
         listFav = museeService.addMuseeToFav(unMusee)
