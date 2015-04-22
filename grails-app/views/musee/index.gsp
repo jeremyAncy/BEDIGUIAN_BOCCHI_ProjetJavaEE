@@ -59,6 +59,8 @@
                     <g:sortableColumn property="accesBus" title="${message(code: 'musee.accesBus.label', default: 'Acces Bus')}" />
                     <g:sortableColumn property="accesMetro" title="${message(code: 'musee.accesMetro.label', default: 'Acces Métro')}" />
                     <g:sortableColumn property="horairesMusee" title="${message(code: 'musee.horairesMusee.label', default: 'Horaire')}" />
+                    <g:sortableColumn property="gestionnaire" title="${message(code: 'musee.gestionnaire.nom.label', default: 'Gestionnaire')}" />
+
 
 
 
@@ -78,6 +80,7 @@
                         <td>${fieldValue(bean: museeInstance, field: "accesBus")}</td>
                         <td>${fieldValue(bean: museeInstance, field: "accesMetro")}</td>
                         <td>${fieldValue(bean: museeInstance, field: "horairesMusee")}</td>
+                        <td>${fieldValue(bean: museeInstance, field: "gestionnaire")}</td>
 
 
                     </tr>
