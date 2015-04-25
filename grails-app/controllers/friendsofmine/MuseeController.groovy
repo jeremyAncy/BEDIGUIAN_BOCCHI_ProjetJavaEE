@@ -12,12 +12,12 @@ class MuseeController {
 
     def doSearchMusee() {
         def museeList = museeService.searchMusees(params.nomMusee,params.codePostal,params.rue)
-        render(view: 'index', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()])
+        def favList = museeService.museeFav
+        render(view: 'index', model: [museeFavorisList: favList, museeInstanceList: museeList, museeInstanceCount: museeList.size()])
     }
 
     def addMuseeFavory() {
-        def museeList = museeService.searchMusees(params.nom,null,null)
-        Musee myMuseeFav = museeList.get(0);
+        Musee myMuseeFav = Musee.findByNomMusee(params.nomMusee)
         def favList = museeService.addMuseeToFav(myMuseeFav)
         render(view: 'index', model: [museeFavorisList: favList, museeInstanceList: Musee.list(), museeInstanceCount: Musee.list().size()])
     }
@@ -31,7 +31,7 @@ class MuseeController {
     def index(Integer max) {
         params.max = Math.min(max ?: 5, 100)
         def favList = museeService.museeFav
-        respond Musee.list(params), model: [museeInstanceCount: Musee.count()]
+        respond Musee.list(params), model: [museeFavorisList: favList, museeInstanceCount: Musee.count()]
     }
 
     def show(Musee museeInstance) {
