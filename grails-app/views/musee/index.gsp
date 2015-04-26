@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html>
 
-<!-- init -->
 <head>
     <meta name="layout" content="main">
     <g:set var="entityName" value="${message(code: 'musee.label', default: 'Musee')}"/>
@@ -21,23 +20,20 @@
 
     <script>
         $(document).ready(function () {
-            var rowCount = $('.ligneFav').length;
-            console.log("taille ligne : "+rowCount);
-
-            /*for (var i = 0; i < rowCount; i++) {
-                var num = $('.ligneFav').children().val();
-                var nameId = $('.ligneFav').siblings().children().attr('id');
-                console.log(num);
-                console.log("Id = " + nameId);
-                var idNum = "#btnFavory" + num;
-                $(idNum).hide();
-            }*/
             $('.ligneFav').each (function() {
                 var nameId = $(this).siblings().children().attr('id');
                 console.log("Id = " + nameId);
-                //var numHide = nameId.slice(-1);
                 var idNum = "#btnFavory" + nameId.slice(-1);
                 $(idNum).hide();
+            });
+            var rowCount = ($('#rechercheMusees tr').length)-1;
+            console.log("lignes recherches : "+rowCount);
+            var cpt = 0;
+            $('#rechercheMusees tr').each (function() {
+                 if(cpt>5) {
+                     $(this).hide();
+                 }
+                 cpt++;
             });
         });
     </script>
@@ -165,6 +161,5 @@
     </div>
 </div>
 </body>
-<!-- fin init -->
 
 </html>

@@ -18,7 +18,8 @@ class MuseeControllerSpec extends Specification {
         params["accesBus"] = 'PaulSab'
         params["accesMetro"] = 'PaulSab Ligne B'
         params["horairesMusee"] = '7:45,18:00'
-
+        params["gestionnaire"] = Mock(Gestionnaire)
+        params["adresse"] = Mock(Adresse)
 
     }
 
@@ -105,7 +106,7 @@ class MuseeControllerSpec extends Specification {
             controller.update(null)
 
         then:"A 404 error is returned"
-            response.redirectedUrl == '/musee/index'
+            response.redirectedUrl == '/'
             flash.message != null
 
 
@@ -137,7 +138,7 @@ class MuseeControllerSpec extends Specification {
             controller.delete(null)
 
         then:"A 404 is returned"
-            response.redirectedUrl == '/musee/index'
+            response.redirectedUrl == '/'
             flash.message != null
 
         when:"A domain instance is created"

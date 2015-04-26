@@ -12,8 +12,7 @@ class DemandeVisiteController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        //def favList = museeService.museeFav
-        respond DemandeVisite.list(params), model: [demandeVisiteInstanceCount: DemandeVisite.count()/*, museeFavorisList: favList*/]
+        respond DemandeVisite.list(params), model: [demandeVisiteInstanceCount: DemandeVisite.count()]
     }
 
     def show(DemandeVisite demandeVisiteInstance) {

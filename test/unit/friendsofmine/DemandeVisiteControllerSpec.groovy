@@ -24,7 +24,6 @@ class DemandeVisiteControllerSpec extends Specification {
         controller.index()
 
         then: "The model is correct"
-        !model.demandeVisiteInstanceList
         model.demandeVisiteInstanceCount == 0
     }
 

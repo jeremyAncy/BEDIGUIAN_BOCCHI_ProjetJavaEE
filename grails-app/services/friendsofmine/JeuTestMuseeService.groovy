@@ -15,7 +15,6 @@ class JeuTestMuseeService {
     Musee musee6
     Musee musee7
 
-    Gestionnaire gestionnaire1
     Gestionnaire gestionnaire2
     Gestionnaire gestionnaire3
     Gestionnaire gestionnaire4

@@ -7,14 +7,10 @@ import friendsofmine.Utilisateur
 
 class BootStrap {
 
-    JeuTestService jeuTestService
     JeuTestMuseeService jeuTestMuseeService
 
     def init = { servletContext ->
 
-        jeuTestService.createJeuTestForUtilisateurs()
-        jeuTestService.createJeuTestFoActivite()
-        jeuTestService.createJeuTestForInscription()
         jeuTestMuseeService.createJeuTestFoMusee()
 
     }

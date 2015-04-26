@@ -7,9 +7,6 @@ class DemandeVisite {
     int nbPersonnes
     String codeDemande
 
-    static hasMany = [museesVisite:Musee]
-    static belongsTo = Musee
-
     static constraints = {
         nbPersonnes min:1, max:6
         debut nullable: false
