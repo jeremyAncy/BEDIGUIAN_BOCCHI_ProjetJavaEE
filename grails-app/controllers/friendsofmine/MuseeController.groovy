@@ -28,6 +28,10 @@ class MuseeController {
         render (view: 'index', model: [museeFavorisList: favList, museeInstanceList: Musee.list(), museeInstanceCount: Musee.list().size()])
     }
 
+    def demandeVisite() {
+        redirect(controller: 'DemandeVisite', action: 'index')
+    }
+
     def index(Integer max) {
         params.max = Math.min(max ?: 5, 100)
         def favList = museeService.museeFav

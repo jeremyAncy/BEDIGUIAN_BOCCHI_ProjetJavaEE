@@ -9,4 +9,8 @@ class Gestionnaire {
     static constraints = {
         nomGestionnaire blank: false, nullable: false
     }
+
+    String toString() {
+        "$nomGestionnaire"
+    }
 }

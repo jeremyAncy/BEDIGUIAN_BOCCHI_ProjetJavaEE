@@ -12,6 +12,8 @@ class Musee {
 
     Adresse adresseMusee
 
+    static hasMany = [demandesVisiteMusee : DemandeVisite]
+
     String toString() {
         "$nomMusee"
     }

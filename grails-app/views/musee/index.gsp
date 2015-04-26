@@ -20,14 +20,25 @@
     </style>
 
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             var rowCount = $('.ligneFav').length;
-            for(var i=0; i<rowCount; i++) {
+            console.log("taille ligne : "+rowCount);
+
+            /*for (var i = 0; i < rowCount; i++) {
                 var num = $('.ligneFav').children().val();
+                var nameId = $('.ligneFav').siblings().children().attr('id');
                 console.log(num);
-                var idNum = "#btnFavory"+num;
+                console.log("Id = " + nameId);
+                var idNum = "#btnFavory" + num;
                 $(idNum).hide();
-            }
+            }*/
+            $('.ligneFav').each (function() {
+                var nameId = $(this).siblings().children().attr('id');
+                console.log("Id = " + nameId);
+                //var numHide = nameId.slice(-1);
+                var idNum = "#btnFavory" + nameId.slice(-1);
+                $(idNum).hide();
+            });
         });
     </script>
 </head>
@@ -87,15 +98,16 @@
         <g:each in="${museeFavorisList}" status="i" var="museeFavori">
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                 <g:form>
-                    <td class="ligneFav"><g:hiddenField name="id"
-                                       value="${museeFavori.id}"/>${fieldValue(bean: museeFavori, field: "nomMusee")}</td>
-                    <td><g:actionSubmit id="removeMuseeFav${museeFavori.id}" action="removeMuseeFavory"
-                                        value="supprimer de ma liste de musées"/></td>
+                    <td class="ligneFav"><g:hiddenField name="id" value="${museeFavori.id}"/>${fieldValue(bean: museeFavori, field: "nomMusee")}</td>
+                    <td><g:actionSubmit id="removeMuseeFav${museeFavori.id}" action="removeMuseeFavory" value="supprimer de ma liste de musées"/></td>
                 </g:form>
             </tr>
         </g:each>
         </tbody>
     </table>
+    <g:form>
+        <g:actionSubmit action="demandeVisite" value="Effectuer	une demande	de visite"/>
+    </g:form>
 </div>
 
 
@@ -141,7 +153,7 @@
                     <td>${fieldValue(bean: museeInstance, field: "horairesMusee")}</td>
                     <td>${fieldValue(bean: museeInstance, field: "gestionnaire")}</td>
                     <td><g:actionSubmit id="btnFavory${museeInstance.id}" action="addMuseeFavory"
-                                        value="Ajouter à ma liste de musées" /></td>
+                                        value="Ajouter à ma liste de musées"/></td>
                 </g:form>
             </tr>
         </g:each>

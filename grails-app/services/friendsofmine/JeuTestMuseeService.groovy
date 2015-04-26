@@ -42,13 +42,12 @@ class JeuTestMuseeService {
             adresse6 = new Adresse(numero: 69,rue: "RUE PARGAMINIERES",codePostal: "31000",ville: "Toulouse").save()
             adresse7 = new Adresse(numero: 31,rue: "RUE DE LA FONDERIE",codePostal: "31000",ville: "Toulouse").save()
 
-            gestionnaire1 = new Gestionnaire(nomGestionnaire: "gustave").save()
-            gestionnaire2 = new Gestionnaire(nomGestionnaire: "roger").save()
+            gestionnaire2 = new Gestionnaire(nomGestionnaire: "Structure commerciale").save()
             gestionnaire3 = new Gestionnaire(nomGestionnaire: "Mairie de Toulouse - DGA Culture").save()
             gestionnaire4 = new Gestionnaire(nomGestionnaire: "Association").save()
             gestionnaire5 = new Gestionnaire(nomGestionnaire: "Autre institution publique").save()
 
-            musee1 = museeService.insertOrUpdateMuseeForGestionnaire(new Musee(nomMusee: "Musée des Augustins", telMusee: "05050505", accesMetro: "Jean Jaures", accesBus: "Jean Jaures", horairesMusee: "10:00,19:00", adresseMusee: adresse1), gestionnaire1)
+            musee1 = museeService.insertOrUpdateMuseeForGestionnaire(new Musee(nomMusee: "Musée des Augustins", telMusee: "05050505", accesMetro: "Jean Jaures", accesBus: "Jean Jaures", horairesMusee: "10:00,19:00", adresseMusee: adresse1), gestionnaire3)
             musee2 = museeService.insertOrUpdateMuseeForGestionnaire(new Musee(nomMusee: "Muséum de Toulouse", telMusee: "05060705", accesMetro: "Jean Jaures", accesBus: "Jean Jaures", horairesMusee: "10:00,17:00", adresseMusee: adresse2), gestionnaire2)
             musee3 = museeService.insertOrUpdateMuseeForGestionnaire(new Musee(nomMusee: "Musée Paul Dupuy", telMusee: "05458605", accesMetro: "Jean Jaures", accesBus: "Jean Jaures", horairesMusee: "10:00,17:00", adresseMusee: adresse3), gestionnaire2)
             musee4 = museeService.insertOrUpdateMuseeForGestionnaire(new Musee(nomMusee: "ARCHIVES MUNICIPALES TOULOUSE", telMusee: "05 61 61 63 33", accesMetro: "Roseraie (A)", accesBus: "36, 38", horairesMusee: "Ouvert du lundi au vendredi de 9h à 17h. Fermeture de 12h à 13h30 pendant toutes les vacances scolaires. Fermeture annuelle la dernière quinzaine de juillet.", adresseMusee: adresse4), gestionnaire3)
